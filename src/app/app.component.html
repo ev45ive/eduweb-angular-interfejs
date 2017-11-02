@@ -10,6 +10,7 @@
       <input (keyup)=" message = $event.target.value ">
       <button (click)="hide = !hide">Toggle</button>
       
+
       <dynamic-card 
         [open]="!hide"
         [text]="message">
