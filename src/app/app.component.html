@@ -9,9 +9,11 @@
 
       <input (keyup)=" message = $event.target.value ">
       <button (click)="hide = !hide">Toggle</button>
-      
+      {{ (hide? 'Ukryte' : 'Widoczne') }}
+      <hr>
 
       <dynamic-card 
+        (openChange)=" hide = !$event "
         [open]="!hide"
         [text]="message">
       </dynamic-card>
