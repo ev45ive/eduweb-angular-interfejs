@@ -7,19 +7,14 @@
   <div class="row">
     <div class="col">
 
-      <input #InputRef (keyup)=" message = $event.target.value ">
+      <input (keyup)=" message = $event.target.value ">
 
-      <button (click)="focus(InputRef)">Focus</button>
-
-      <button (click)="cardRef.open()">Open</button>
-      <button (click)="cardRef.close()">Close</button>
+      <button (click)="open = true">Open</button>
+      <button (click)="open = false">Close</button>
       {{ ( open? 'Open' : 'Close' ) }}
       <hr>
 
-      <dynamic-card #cardRef
-        [(open)]="open"
-        [text]="message">
-      </dynamic-card>
+      <popup-message></popup-message>
 
     </div>
   </div>
