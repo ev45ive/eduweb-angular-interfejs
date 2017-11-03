@@ -28,6 +28,11 @@ export class DynamicCardComponent implements OnInit {
     this.openChange.emit(this.isOpen)
   }
 
+  open(){
+    this.isOpen = true
+    this.openChange.emit(this.isOpen)
+  }
+
   constructor() { }
 
   ngOnInit() {

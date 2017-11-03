@@ -13,7 +13,6 @@ export class AppComponent {
 
   focus(elem){
     console.log(elem)
-    elem.focus()
   }
 
 }

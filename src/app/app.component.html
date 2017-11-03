@@ -11,12 +11,12 @@
 
       <button (click)="focus(InputRef)">Focus</button>
 
-      <button (click)="open = true">Open</button>
-      <button (click)="open = false">Close</button>
+      <button (click)="cardRef.open()">Open</button>
+      <button (click)="cardRef.close()">Close</button>
       {{ ( open? 'Open' : 'Close' ) }}
       <hr>
 
-      <dynamic-card 
+      <dynamic-card #cardRef
         [(open)]="open"
         [text]="message">
       </dynamic-card>
