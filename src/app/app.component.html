@@ -8,8 +8,9 @@
     <div class="col">
 
       <input (keyup)=" message = $event.target.value ">
-      <button (click)="open = !open">Toggle</button>
-      {{ (open? 'Ukryte' : 'Widoczne') }}
+      <button (click)="open = true">Open</button>
+      <button (click)="open = false">Close</button>
+      {{ ( open? 'Open' : 'Close' ) }}
       <hr>
 
       <dynamic-card 

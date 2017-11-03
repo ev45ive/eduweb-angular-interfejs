@@ -18,7 +18,7 @@ export class DynamicCardComponent implements OnInit {
   isOpen = false
 
   @Input()
-  text = 'test'
+  text = ''
 
   @Output()
   openChange = new EventEmitter()
