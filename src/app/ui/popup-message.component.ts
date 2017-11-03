@@ -4,7 +4,8 @@ import { Component, Input, OnInit } from '@angular/core'
 @Component({
   selector: 'popup-message',
   template: `
-    <div class="alert alert-primary" *ngIf="isOpen">
+    <div class="alert alert-primary"  *ngIf="isOpen">
+      <card-close></card-close>
       {{ text }}
     </div>
   `,
