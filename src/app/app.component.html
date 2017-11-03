@@ -7,7 +7,10 @@
   <div class="row">
     <div class="col">
 
-      <input (keyup)=" message = $event.target.value ">
+      <input #InputRef (keyup)=" message = $event.target.value ">
+
+      <button (click)="focus(InputRef)">Focus</button>
+
       <button (click)="open = true">Open</button>
       <button (click)="open = false">Close</button>
       {{ ( open? 'Open' : 'Close' ) }}

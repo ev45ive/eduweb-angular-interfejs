@@ -9,4 +9,11 @@ export class AppComponent {
   title = 'app';
   open = false
   message = "Test Message"
+
+
+  focus(elem){
+    console.log(elem)
+    elem.focus()
+  }
+
 }
