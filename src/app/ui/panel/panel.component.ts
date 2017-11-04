@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'panel',
   template: `
-    <p>
-      panel works!
-    </p>
+    <div class="card">
+      <div class="card-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
   `,
   styles: []
 })
