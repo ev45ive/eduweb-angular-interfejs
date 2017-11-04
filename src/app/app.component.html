@@ -8,16 +8,18 @@
     <div class="col">
       <hr>
       
-      <panel>
-          <h4>Tytuł</h4>
-      </panel>
-
-      <panel>
+      <panel title="Lista testowa">
           <ul>
-            <li>Test 1</li>
-            <li>Test 2</li>
-            <li>{{ 2 + 3 }}</li>
+            <li *ngFor="let i of [1,2,3,4,5]">Test {{i}}</li>
           </ul>
+      </panel>
+      
+      <hr>
+      
+      <panel title="Komunikaty">
+          <p class="alert bg-warning">
+            Powiadomienie w panelu!
+          </p>
       </panel>
 
     </div>
