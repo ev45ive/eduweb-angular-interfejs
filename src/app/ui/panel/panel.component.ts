@@ -5,12 +5,14 @@ import { Component, Input, OnInit } from '@angular/core'
   template: `
     <div class="card">
       <div class="card-header">
-        <h5>{{title}}</h5>
+        <h5 *ngIf="title">{{title}}</h5>
+        <ng-content select="panel-header"></ng-content>
       </div>
       <div class="card-body">
         <ng-content></ng-content>
       </div>
       <div class="card-footer">
+        <ng-content select="panel-footer"></ng-content>
       </div>
     </div>
   `,
