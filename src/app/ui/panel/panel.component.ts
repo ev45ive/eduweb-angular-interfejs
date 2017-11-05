@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core'
 @Component({
   selector: 'panel',
   template: `
-    <div class="card">
+    <div class="card" *ngIf="open">
       <div class="card-header">
         <h5 *ngIf="title">{{title}}</h5>
         <ng-content select="panel-header"></ng-content>
@@ -22,6 +22,9 @@ export class PanelComponent implements OnInit {
 
   @Input()
   title
+
+  @Input()
+  open = true
 
   constructor() { }
 
