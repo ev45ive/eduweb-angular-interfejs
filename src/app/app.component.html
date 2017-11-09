@@ -8,15 +8,16 @@
     <div class="col">
       <hr>
       
-      <panel>
+      <panel title="Lista">
         <h4 class="card-header">      
           <panel-close></panel-close> 
           Lista Testowa <small>{{list.length}} testow</small>
         </h4>
           
-          <div *ngFor="let item of list">    
+          <panel *ngFor="let item of list" [title]="item">    
+              <panel-close></panel-close>  
               Test: {{item}}
-          </div>                     
+          </panel>                     
           
         <div class="card-footer">
             <input (keyup.enter)="
