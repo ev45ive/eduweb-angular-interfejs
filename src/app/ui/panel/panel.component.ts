@@ -5,16 +5,13 @@ import { AfterContentInit, Component, ContentChild, Input, OnInit } from '@angul
   selector: 'panel',
   template: `
     <div class="card" *ngIf="open">
-      <div class="card-header">
-      <ng-content select="panel-header"></ng-content>
-      <h5 *ngIf="title">{{title}}</h5>
-      </div>
+      <ng-content select=".card-header"></ng-content>
+      
       <div class="card-body">
         <ng-content></ng-content>
       </div>
-      <div class="card-footer">
-        <ng-content select="panel-footer"></ng-content>
-      </div>
+      
+      <ng-content select=".card-footer"></ng-content>
     </div>
   `,
   styles: []

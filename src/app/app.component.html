@@ -9,30 +9,28 @@
       <hr>
       
       <panel>
-        <h4 ngProjectAs="panel-header">      
+        <h4 class="card-header">      
           <panel-close></panel-close> 
-          Lista Testowa <small>5 testow</small>
+          Lista Testowa <small>{{list.length}} testow</small>
         </h4>
           
-          <ul>
-            <li *ngFor="let item of list">
-              Item: {{item}}
-            </li>
-          </ul>                     
+          <div *ngFor="let item of list">    
+              Test: {{item}}
+          </div>                     
           
-          <div ngProjectAs="panel-footer">
+        <div class="card-footer">
             <input (keyup.enter)="
               list.push(itemNameRef.value);
               itemNameRef.value = ''
             " #itemNameRef class="form-control">  
-          </div> 
+        </div> 
       </panel>
       
       <hr>
       
       <panel>
         
-          <h5 ngProjectAs="panel-header">      
+          <h5 class="panel-header">      
               <panel-close></panel-close>
               Komunikaty
           </h5>
