@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { PanelCloseComponent } from './panel-close.component'
+import { AfterContentInit, Component, ContentChild, Input, OnInit } from '@angular/core'
 
 @Component({
   selector: 'panel',
   template: `
     <div class="card" *ngIf="open">
       <div class="card-header">
-        <h5 *ngIf="title">{{title}}</h5>
-        <ng-content select="panel-header"></ng-content>
+      <ng-content select="panel-header"></ng-content>
+      <h5 *ngIf="title">{{title}}</h5>
       </div>
       <div class="card-body">
         <ng-content></ng-content>
@@ -18,10 +19,21 @@ import { Component, Input, OnInit } from '@angular/core'
   `,
   styles: []
 })
-export class PanelComponent implements OnInit {
+export class PanelComponent implements OnInit, AfterContentInit {
 
   @Input()
   title
+
+  @ContentChild(PanelCloseComponent)
+  closeBtn:PanelCloseComponent
+
+  ngAfterContentInit() {
+    if(this.closeBtn){
+      this.closeBtn.onClose.subscribe(()=>{
+        this.open = false
+      })
+    }
+  }
 
   @Input()
   open = true
