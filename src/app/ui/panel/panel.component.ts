@@ -1,5 +1,5 @@
 import { PanelCloseComponent } from './panel-close.component'
-import { AfterContentInit, Component, ContentChild, Input, OnInit } from '@angular/core'
+import { AfterContentInit, Component, ContentChild, ContentChildren, Input, OnInit, QueryList } from '@angular/core'
 
 @Component({
   selector: 'panel',
@@ -21,10 +21,15 @@ export class PanelComponent implements OnInit, AfterContentInit {
   @Input()
   title
 
+  @ContentChildren(PanelComponent)
+  panels = new QueryList<PanelComponent>()
+  
   @ContentChild(PanelCloseComponent)
   closeBtn:PanelCloseComponent
 
   ngAfterContentInit() {
+    console.log(this.panels)
+
     if(this.closeBtn){
       this.closeBtn.onClose.subscribe(()=>{
         this.open = false
