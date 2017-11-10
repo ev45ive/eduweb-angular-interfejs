@@ -1,11 +1,19 @@
+import { PanelTabComponent } from './panel-tab.component'
 import { PanelCloseComponent } from './panel-close.component'
 import { AfterContentInit, Component, ContentChild, ContentChildren, Input, OnInit, QueryList } from '@angular/core'
+import { PanelBaseComponent } from './panel-base.component';
 
 @Component({
   selector: 'panel',
   template: `
     <div class="card" *ngIf="open">
       <ng-content select=".card-header"></ng-content>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item" *ngFor="let panel of panels">
+          <a class="nav-link"> {{panel.title}} </a>
+        </li>
+      </ul>
       
       <div class="card-body">
         <ng-content></ng-content>
@@ -16,33 +24,14 @@ import { AfterContentInit, Component, ContentChild, ContentChildren, Input, OnIn
   `,
   styles: []
 })
-export class PanelComponent implements OnInit, AfterContentInit {
+export class PanelComponent extends PanelBaseComponent implements OnInit, AfterContentInit {
 
-  @Input()
-  title
+  @ContentChildren(PanelTabComponent)
+  panels = new QueryList<PanelTabComponent>()
 
-  @ContentChildren(PanelComponent)
-  panels = new QueryList<PanelComponent>()
-  
-  @ContentChild(PanelCloseComponent)
-  closeBtn:PanelCloseComponent
-
-  ngAfterContentInit() {
+  ngAfterContentInit(){
     console.log(this.panels)
-
-    if(this.closeBtn){
-      this.closeBtn.onClose.subscribe(()=>{
-        this.open = false
-      })
-    }
+    super.ngAfterContentInit()
   }
-
-  @Input()
-  open = true
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  
 }
