@@ -8,7 +8,7 @@ import { PanelBaseComponent } from './panel-base.component';
   template: `
     <div class="card" *ngIf="open">
       <ng-content select=".card-header"></ng-content>
-    
+
       <ul class="nav nav-pills">
         <li class="nav-item" *ngFor="let panel of panels">
           <a class="nav-link"> {{panel.title}} </a>
@@ -26,11 +26,23 @@ import { PanelBaseComponent } from './panel-base.component';
 })
 export class PanelComponent extends PanelBaseComponent implements OnInit, AfterContentInit {
 
+
   @ContentChildren(PanelTabComponent)
   panels = new QueryList<PanelTabComponent>()
 
   ngAfterContentInit() {
+    setTimeout(()=>{
+      if(this.panels.length){
+        this.openTab(this.panels.first)
+      }
+    })
     super.ngAfterContentInit()
   }
 
+  openTab(panel){
+    this.panels.toArray().forEach(panel=>{
+      panel.open = false
+    })
+    panel.open = true
+  }
 }
