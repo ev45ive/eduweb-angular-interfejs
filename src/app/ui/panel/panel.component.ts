@@ -1,6 +1,6 @@
+import { AfterContentInit, Component, ContentChild, ContentChildren, Input, OnInit, QueryList } from '@angular/core'
 import { PanelTabComponent } from './panel-tab.component'
 import { PanelCloseComponent } from './panel-close.component'
-import { AfterContentInit, Component, ContentChild, ContentChildren, Input, OnInit, QueryList } from '@angular/core'
 import { PanelBaseComponent } from './panel-base.component';
 
 @Component({
@@ -8,14 +8,14 @@ import { PanelBaseComponent } from './panel-base.component';
   template: `
     <div class="card" *ngIf="open">
       <ng-content select=".card-header"></ng-content>
-
+    
       <ul class="nav nav-pills">
         <li class="nav-item" *ngFor="let panel of panels">
           <a class="nav-link"> {{panel.title}} </a>
         </li>
       </ul>
       
-      <div class="card-body">
+      <div class="card-body">    
         <ng-content></ng-content>
       </div>
       
@@ -29,9 +29,8 @@ export class PanelComponent extends PanelBaseComponent implements OnInit, AfterC
   @ContentChildren(PanelTabComponent)
   panels = new QueryList<PanelTabComponent>()
 
-  ngAfterContentInit(){
-    console.log(this.panels)
+  ngAfterContentInit() {
     super.ngAfterContentInit()
   }
-  
+
 }

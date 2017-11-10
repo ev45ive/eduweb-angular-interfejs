@@ -10,5 +10,5 @@ export class AppComponent {
 
   open = true
 
-  list = ['A','B','C']
+  list = ['Pierwszy','Drugi','Trzeci']
 }

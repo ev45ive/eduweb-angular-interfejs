@@ -14,5 +14,4 @@ import { PanelBaseComponent } from './panel-base.component';
 })
 export class PanelTabComponent extends PanelBaseComponent implements OnInit {
 
-
 }
