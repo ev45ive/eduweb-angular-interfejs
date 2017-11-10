@@ -6,6 +6,7 @@ import { PanelComponent } from './ui/panel/panel.component';
 import { PanelCloseComponent } from './ui/panel/panel-close.component';
 import { PanelTabComponent } from './ui/panel/panel-tab.component';
 import { PanelBaseComponent } from './ui/panel/panel-base.component';
+import { TabsNavComponent } from './ui/panel/tabs-nav.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PanelBaseComponent } from './ui/panel/panel-base.component';
     PanelComponent,
     PanelCloseComponent,
     PanelTabComponent,
-    PanelBaseComponent
+    PanelBaseComponent,
+    TabsNavComponent
   ],
   imports: [
     BrowserModule

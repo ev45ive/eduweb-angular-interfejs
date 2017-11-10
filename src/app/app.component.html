@@ -13,11 +13,16 @@
           <panel-close></panel-close> 
           Lista Testowa <small>{{list.length}} testow</small>
         </h4>
-          
-          <panel-tab *ngFor="let item of list" [title]="item">    
-              <panel-close></panel-close>  
-              Test: {{item}}
-          </panel-tab>                     
+
+        <tabs-nav></tabs-nav>
+        
+        <br>
+
+        <panel-tab
+        *ngFor="let item of list" [title]="item">    
+            <panel-close></panel-close>  
+            Test: {{item}}
+        </panel-tab>                       
           
         <div class="card-footer">
             <input (keyup.enter)="
