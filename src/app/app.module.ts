@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { DropdownDirective } from './ui/dropdown/dropdown.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule
