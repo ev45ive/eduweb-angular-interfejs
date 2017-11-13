@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  menu = {
+    items:[
+      { label: 'Pierwsza opcja' },
+      { label: 'Druga opcja' },
+      { label: 'Jeszcze jedna...' },
+    ]
+  }
+
+  addMenuItem(label){
+    this.menu.items.push({
+      label
+    })
+  }
 }
