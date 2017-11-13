@@ -6,7 +6,7 @@ import { Directive, ElementRef } from '@angular/core';
 export class DropdownDirective {
 
   constructor(private elem: ElementRef) {
-    // console.log('hello from dropdown!', this.elem)
+    
   }
 
   ngOnInit(){
