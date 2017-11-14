@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, ContentChild, HostListener } from '@angular/core';
+import { Directive, ElementRef, Renderer2, ContentChild, HostListener, HostBinding } from '@angular/core';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 
@@ -16,8 +16,8 @@ export class DropdownDirective {
   })
   toggleElem: DropdownToggleDirective
 
-  @ContentChild(DropdownMenuDirective, { read: ElementRef })
-  menu: ElementRef
+  @ContentChild(DropdownMenuDirective, { read: DropdownMenuDirective })
+  menu: DropdownMenuDirective
 
   @HostListener('keyup.escape')
   @HostListener('document:click',['$event.path'])
@@ -25,17 +25,32 @@ export class DropdownDirective {
     let isOutside = path.indexOf(this.elem.nativeElement) == -1
 
     if(isOutside){
-      let menu = this.menu.nativeElement
-      this.renderer.setProperty(menu, 'hidden', true)
+      this.close()
     }
   }
 
+  @HostBinding('class.show')
+  opened = false
+
+  open(){
+    this.opened = true
+    this.menu.opened = this.opened
+  }
+
+  close(){
+    this.opened = false
+    this.menu.opened = this.opened
+  }
+
+  toggle(){
+    this.opened? this.close() : this.open()
+  }
+
   ngAfterContentInit() {
-    let menu = this.menu.nativeElement
-    this.renderer.setProperty(menu, 'hidden', true)
+    this.close()
 
     this.toggleElem.onToggle.subscribe(()=>{
-        this.renderer.setProperty(menu, 'hidden', !menu.hidden)
+        this.toggle()
     })
   }
 
