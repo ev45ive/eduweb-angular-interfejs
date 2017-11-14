@@ -14,7 +14,7 @@ export class DropdownDirective {
   @ContentChild(DropdownToggleDirective, { 
     read: DropdownToggleDirective 
   })
-  toggle: DropdownToggleDirective
+  toggleElem: DropdownToggleDirective
 
   @ContentChild(DropdownMenuDirective, { read: ElementRef })
   menu: ElementRef
@@ -34,7 +34,7 @@ export class DropdownDirective {
     let menu = this.menu.nativeElement
     this.renderer.setProperty(menu, 'hidden', true)
 
-    this.toggle.onToggle.subscribe(()=>{
+    this.toggleElem.onToggle.subscribe(()=>{
         this.renderer.setProperty(menu, 'hidden', !menu.hidden)
     })
   }
