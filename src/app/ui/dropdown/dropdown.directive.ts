@@ -3,7 +3,8 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 
 @Directive({
-  selector: '[dropdown]'
+  selector: '[dropdown]',
+  exportAs: 'dropdown'
 })
 export class DropdownDirective {
 

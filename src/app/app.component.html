@@ -13,14 +13,15 @@
   </div>
   <div class="row">
       <div class="col">
-          <button class="btn btn-default">Open</button>
+          <button class="btn btn-default" (click)="open(first);
+          $event.stopPropagation()">Open</button>
         <hr>
       </div>
   </div>
   <div class="row">
     <div class="col">
 
-      <div class="dropdown" dropdown>
+      <div class="dropdown" dropdown #first="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button">
           Dropdown button
         </button>

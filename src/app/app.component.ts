@@ -16,6 +16,11 @@ export class AppComponent {
     ]
   }
 
+  open(ref){
+    console.log(ref)
+    ref.open()
+  }
+
   addMenuItem(label){
     this.menu.items.push({
       label
