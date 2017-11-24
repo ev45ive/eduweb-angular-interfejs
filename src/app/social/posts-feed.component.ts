@@ -6,9 +6,19 @@ import { Component, OnInit } from '@angular/core';
     <h4>Social Feed</h4>
     <div class="col-8 mx-auto">
       <posts-filter (queryChange)="filter($event)"></posts-filter>
+    
+      <ng-container *ngIf="getResults().length; then results; else noResults"></ng-container>
+    
+    </div>
 
+
+    <ng-template #noResults>
+      <no-results></no-results>
+    </ng-template>
+
+    <ng-template #results>
       <div class="card-deck flex-column">
-        <div class="card mb-4" *ngFor="let post of results">
+        <div class="card mb-4" *ngFor="let post of getResults()">
           <div class="card-body">
             <post-header [post]="post"></post-header>
             <p class="card-text">{{post.content}}</p>
@@ -18,16 +28,20 @@ import { Component, OnInit } from '@angular/core';
           </div>
         </div>
       </div>
-    </div>
+    </ng-template>
   `,
   styles: []
 })
 export class PostsFeedComponent implements OnInit {
 
+  getResults(){
+    return this.results
+  }
+
   posts = [
     {
       "id": 1,
-      "content": "Some example text update. ",
+      "content": "Some example text update.",
       "author": {
         "name": "Matt Exampler",
         "avatar": "assets/avatars/mateusz.jpg"
