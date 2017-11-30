@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
     <div class="col-8 mx-auto">
       <posts-filter (queryChange)="filter($event)"></posts-filter>
     
-      <ng-container *ngIf="getResults() as resultsList; else noResultsTpl">
-        <div class="card-deck flex-column">
+      <ng-container *ngIf="getResults(); then resultsTpl else noResultsTpl"></ng-container>
+    
+    </div>
+
+    <ng-template #resultsTpl let-resultsList>
+      <div class="card-deck flex-column">
           <div class="card mb-4" *ngFor="let post of resultsList">
             <div class="card-body">
               <post-header [post]="post"></post-header>
@@ -18,10 +22,8 @@ import { Component, OnInit } from '@angular/core';
               <post-actions [post]="post"></post-actions>
             </div>
           </div>
-        </div>
-    </ng-container>
-    
-    </div>
+      </div>
+    </ng-template>
 
     <ng-template #noResultsTpl>
       <no-results></no-results>
