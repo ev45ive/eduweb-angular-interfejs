@@ -7,26 +7,24 @@ import { Component, OnInit } from '@angular/core';
     <div class="col-8 mx-auto">
       <posts-filter (queryChange)="filter($event)"></posts-filter>
     
-      <ng-container *ngIf="getResults().length; then results; else noResults"></ng-container>
+      <ng-container *ngIf="getResults() as resultsList; else noResultsTpl">
+        <div class="card-deck flex-column">
+          <div class="card mb-4" *ngFor="let post of resultsList">
+            <div class="card-body">
+              <post-header [post]="post"></post-header>
+              <p class="card-text">{{post.content}}</p>
+            </div>
+            <div class="card-footer">
+              <post-actions [post]="post"></post-actions>
+            </div>
+          </div>
+        </div>
+    </ng-container>
     
     </div>
 
-    <ng-template #noResults>
+    <ng-template #noResultsTpl>
       <no-results></no-results>
-    </ng-template>
-
-    <ng-template #results>
-      <div class="card-deck flex-column">
-        <div class="card mb-4" *ngFor="let post of getResults()">
-          <div class="card-body">
-            <post-header [post]="post"></post-header>
-            <p class="card-text">{{post.content}}</p>
-          </div>
-          <div class="card-footer">
-            <post-actions [post]="post"></post-actions>
-          </div>
-        </div>
-      </div>
     </ng-template>
   `,
   styles: []
@@ -34,7 +32,7 @@ import { Component, OnInit } from '@angular/core';
 export class PostsFeedComponent implements OnInit {
 
   getResults(){
-    return this.results
+    return this.results.length? this.results : null
   }
 
   posts = [
