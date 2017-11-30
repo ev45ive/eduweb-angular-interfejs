@@ -11,7 +11,6 @@ import { Component, OnInit } from '@angular/core';
     
     </div>
 
-
     <ng-template #noResults>
       <no-results></no-results>
     </ng-template>
