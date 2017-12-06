@@ -13,20 +13,19 @@ import { Component, OnInit } from '@angular/core';
 
     <ng-template #resultsTpl let-resultsList>
       <div class="card-deck flex-column">
-          <div class="card mb-4" *ngFor="let result of resultsList; let i = index">
+          <div class="card mb-4" *ngFor="let result of resultsList">
             <ng-container *ngTemplateOutlet="(result.media? mediaPost : regularPost); context: {
               post: result,
-              $implicit: result,
-              index: i
+              $implicit: result
             }"></ng-container>
           </div>
       </div>
     </ng-template>
 
-    <ng-template #mediaPost let-post let-i="index">
+    <ng-template #mediaPost let-post>
       <div class="card-body">
         <post-header [post]="post"></post-header>
-        <p class="card-text">{{i}} {{post.content}}</p>
+        <p class="card-text">{{post.content}}</p>
       </div>
       <img class="w-100 mx-auto" [src]="post.media.image">
       <div class="card-footer">
