@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'posts-feed',
@@ -14,10 +14,7 @@ import { Component, OnInit } from '@angular/core';
     <ng-template #resultsTpl let-resultsList>
       <div class="card-deck flex-column">
           <div class="card mb-4" *ngFor="let result of resultsList">
-            <ng-container *ngTemplateOutlet="(result.media? mediaPost : regularPost); context: {
-              post: result,
-              $implicit: result
-            }"></ng-container>
+            <ng-container *ngTemplateOutlet="getPostTemplate(result); context: getPostContext(result)"></ng-container>
           </div>
       </div>
     </ng-template>
@@ -51,8 +48,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsFeedComponent implements OnInit {
 
+  @ViewChild('regularPost')
+  regularPostTpl
+
+  @ViewChild('mediaPost')
+  mediaPostTpl
+
+  ngAfterViewInit(){
+    console.log(this)
+  }
+
   getResults(){
     return this.results.length? this.results : null
+  }
+
+  getPostTemplate(post){
+    return post.media? this.mediaPostTpl : this.regularPostTpl
+  }
+
+  getPostContext(post){
+    return {
+      post,
+      $implicit: post
+    }
   }
 
   posts = [
