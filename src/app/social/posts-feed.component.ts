@@ -14,31 +14,19 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
     <ng-template #resultsTpl let-resultsList>
       <div class="card-deck flex-column">
           <div class="card mb-4" *ngFor="let result of resultsList">
-            <ng-container *ngTemplateOutlet="getPostTemplate(result); context: getPostContext(result)"></ng-container>
+
+            <dynamic-post [post]="result"></dynamic-post>
+
+
+            <!-- <ng-container [ngSwitch]="result.type">
+              <media-post *ngSwitchCase=" 'media' " [post]="result"></media-post>
+              <regular-post *ngSwitchDefault [post]="result"></regular-post>
+            </ng-container> -->
+
           </div>
       </div>
     </ng-template>
 
-    <ng-template #mediaPost let-post>
-      <div class="card-body">
-        <post-header [post]="post"></post-header>
-        <p class="card-text">{{post.content}}</p>
-      </div>
-      <img class="w-100 mx-auto" [src]="post.media.image">
-      <div class="card-footer">
-        <post-actions [post]="post"></post-actions>
-      </div>
-    </ng-template>
-
-    <ng-template #regularPost let-post>
-      <div class="card-body">
-        <post-header [post]="post"></post-header>
-        <p class="card-text">{{post.content}}</p>
-      </div>
-      <div class="card-footer">
-        <post-actions [post]="post"></post-actions>
-      </div>
-    </ng-template>
 
     <ng-template #noResultsTpl>
       <no-results></no-results>
@@ -48,35 +36,16 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 })
 export class PostsFeedComponent implements OnInit {
 
-  @ViewChild('regularPost')
-  regularPostTpl
-
-  @ViewChild('mediaPost')
-  mediaPostTpl
-
-  ngAfterViewInit(){
-    console.log(this)
-  }
 
   getResults(){
     return this.results.length? this.results : null
-  }
-
-  getPostTemplate(post){
-    return post.media? this.mediaPostTpl : this.regularPostTpl
-  }
-
-  getPostContext(post){
-    return {
-      post,
-      $implicit: post
-    }
   }
 
   posts = [
     {
       "id": 1,
       "content": "Some example text update.",
+      "type": "regular",
       "author": {
         "name": "Matt Exampler",
         "avatar": "assets/avatars/mateusz.jpg"
@@ -85,6 +54,7 @@ export class PostsFeedComponent implements OnInit {
     {
       "id": 2,
       "content": "Some example text update.",    
+      "type": "media",
       "media": {
         "image": "assets/images/logoedu.png"
       },
@@ -96,6 +66,7 @@ export class PostsFeedComponent implements OnInit {
     {
       "id": 3,
       "content": "Some example text update.",
+      "type": "regular",
       "author": {
         "name": "Peter Sampler",
         "avatar": "assets/avatars/piotr.png"
