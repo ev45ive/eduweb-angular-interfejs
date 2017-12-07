@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren } from '@angular/core'
+import { PostTplDirective } from './post-tpl.directive';
 
 @Component({
   selector: 'posts-feed',
@@ -14,12 +15,13 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
     <ng-template #resultsTpl let-resultsList>
       <div class="card-deck flex-column">
           <div class="card mb-4" *ngFor="let result of resultsList">
-            <ng-container *ngTemplateOutlet="getPostTemplate(result); context: getPostContext(result)"></ng-container>
+            <!-- <ng-container *ngTemplateOutlet="getPostTemplate(result); context: getPostContext(result)"></ng-container> -->
+            <ng-container *postOutlet="result; types templates"></ng-container>
           </div>
       </div>
     </ng-template>
 
-    <ng-template #mediaPost let-post>
+    <div *postTpl="let post; type 'media' ">
       <div class="card-body">
         <post-header [post]="post"></post-header>
         <p class="card-text">{{post.content}}</p>
@@ -28,9 +30,9 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
       <div class="card-footer">
         <post-actions [post]="post"></post-actions>
       </div>
-    </ng-template>
+    </div>
 
-    <ng-template #regularPost let-post>
+    <div *postTpl="let post; type 'regular' ">
       <div class="card-body">
         <post-header [post]="post"></post-header>
         <p class="card-text">{{post.content}}</p>
@@ -38,7 +40,7 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
       <div class="card-footer">
         <post-actions [post]="post"></post-actions>
       </div>
-    </ng-template>
+    </div>
 
     <ng-template #noResultsTpl>
       <no-results></no-results>
@@ -48,35 +50,26 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 })
 export class PostsFeedComponent implements OnInit {
 
-  @ViewChild('regularPost')
-  regularPostTpl
+  @ViewChildren(PostTplDirective,{ read: PostTplDirective })
+  postTpls = new QueryList<PostTplDirective>()
 
-  @ViewChild('mediaPost')
-  mediaPostTpl
+  templates:PostTplDirective[]
 
   ngAfterViewInit(){
-    console.log(this)
+    setTimeout(()=>{
+      this.templates = this.postTpls.toArray()
+    })
   }
 
   getResults(){
     return this.results.length? this.results : null
   }
 
-  getPostTemplate(post){
-    return post.media? this.mediaPostTpl : this.regularPostTpl
-  }
-
-  getPostContext(post){
-    return {
-      post,
-      $implicit: post
-    }
-  }
-
   posts = [
     {
       "id": 1,
       "content": "Some example text update.",
+      "type": "regular",
       "author": {
         "name": "Matt Exampler",
         "avatar": "assets/avatars/mateusz.jpg"
@@ -85,6 +78,7 @@ export class PostsFeedComponent implements OnInit {
     {
       "id": 2,
       "content": "Some example text update.",    
+      "type": "media",
       "media": {
         "image": "assets/images/logoedu.png"
       },
@@ -96,6 +90,7 @@ export class PostsFeedComponent implements OnInit {
     {
       "id": 3,
       "content": "Some example text update.",
+      "type": "regular",
       "author": {
         "name": "Peter Sampler",
         "avatar": "assets/avatars/piotr.png"

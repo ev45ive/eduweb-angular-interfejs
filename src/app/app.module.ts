@@ -7,6 +7,8 @@ import { PostActionsComponent } from './social/post-actions.component';
 import { PostHeaderComponent } from './social/post-header.component';
 import { NoResultsComponent } from './social/no-results.component';
 import { PostsFilterComponent } from './social/posts-filter.component';
+import { PostTplDirective } from './social/post-tpl.directive';
+import { PostOutletDirective } from './social/post-outlet.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { PostsFilterComponent } from './social/posts-filter.component';
     PostActionsComponent,
     PostHeaderComponent,
     NoResultsComponent,
-    PostsFilterComponent
+    PostsFilterComponent,
+    PostTplDirective,
+    PostOutletDirective
   ],
   imports: [
     BrowserModule
