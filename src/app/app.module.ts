@@ -10,6 +10,7 @@ import { PostsFilterComponent } from './social/posts-filter.component';
 import { RegularPostComponent } from './social/posts/regular-post.component';
 import { MediaPostComponent } from './social/posts/media-post.component';
 import { DynamicPostComponent } from './social/dynamic-post.component';
+import { CommentsComponent } from './social/comments.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DynamicPostComponent } from './social/dynamic-post.component';
     PostsFilterComponent,
     RegularPostComponent,
     MediaPostComponent,
-    DynamicPostComponent
+    DynamicPostComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule

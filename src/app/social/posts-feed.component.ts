@@ -66,7 +66,24 @@ export class PostsFeedComponent implements OnInit {
             "name": "Matt Exampler",
             "avatar": "assets/avatars/mateusz.jpg"
           },
-
+          "comments": [
+            {
+              "id": 3,
+              "content": "Oh, and it nests?!",
+              "author": {
+                "name": "Greg Tester",
+                "avatar": "assets/avatars/grzegorz.jpg"
+              }
+            },
+            {
+              "id": 4,
+              "content": "Sure, We can go deeper.",
+              "author": {
+                "name": "Matt Exampler",
+                "avatar": "assets/avatars/mateusz.jpg"
+              }
+            }
+          ]
         }
       ]
     },

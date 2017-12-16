@@ -9,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core'
   </div>
   <div class="card-footer">
     <post-actions [post]="post"></post-actions>
+    <comments [post]="post"></comments>
   </div>
   `,
   styles: []
