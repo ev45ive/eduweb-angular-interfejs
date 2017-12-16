@@ -37,8 +37,8 @@ import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 export class PostsFeedComponent implements OnInit {
 
 
-  getResults(){
-    return this.results.length? this.results : null
+  getResults() {
+    return this.results.length ? this.results : null
   }
 
   posts = [
@@ -49,11 +49,30 @@ export class PostsFeedComponent implements OnInit {
       "author": {
         "name": "Matt Exampler",
         "avatar": "assets/avatars/mateusz.jpg"
-      }
+      },
+      "comments": [
+        {
+          "id": 1,
+          "content": "Oh Wow!",
+          "author": {
+            "name": "Greg Tester",
+            "avatar": "assets/avatars/grzegorz.jpg"
+          }
+        },
+        {
+          "id": 2,
+          "content": "Such Angular",
+          "author": {
+            "name": "Matt Exampler",
+            "avatar": "assets/avatars/mateusz.jpg"
+          },
+
+        }
+      ]
     },
     {
       "id": 2,
-      "content": "Some example text update.",    
+      "content": "Some example text update.",
       "type": "media",
       "media": {
         "image": "assets/images/logoedu.png"
@@ -76,8 +95,8 @@ export class PostsFeedComponent implements OnInit {
 
   results = []
 
-  filter(query){
-    this.results = this.posts.filter( post => {
+  filter(query) {
+    this.results = this.posts.filter(post => {
       return !query || (post.content.includes(query) || post.author.name.includes(query))
     })
   }
